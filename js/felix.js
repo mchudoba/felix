@@ -1,5 +1,6 @@
 var DEFAULT_REFRESH_RATE_MILLIS = 500;
 var running = true;
+var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
 
 function felix() {
     var target = document.getElementById('felix');
@@ -26,23 +27,15 @@ function stream() {
     }
 
     felix();
-
-    var refreshRateMillis = getRefreshRateMillis();
     setTimeout(stream, refreshRateMillis);
 }
 
-function getRefreshRateMillis() {
-    var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
-
-    var urlParams = new URLSearchParams(window.location.search);
-    var rateParam = urlParams.get('rate');
-    if (!!rateParam) {
-        refreshRateMillis = rateParam;
+function updateRefreshRate() {
+    var newRate = Number(this.value);
+    if (Number.isInteger(newRate)) {
+        console.log(newRate);
+        refreshRateMillis = newRate;
     }
-
-    $('#refreshRate').text(refreshRateMillis);
-
-    return refreshRateMillis;
 }
 
 function toggleTheme() {
@@ -68,4 +61,7 @@ $(function () {
     stream();
     $('input[name="theme"]').change(toggleTheme);
     $('input[name="playback"]').change(playPause);
+
+    $('#refreshRate').val(refreshRateMillis);
+    $('#refreshRate').blur(updateRefreshRate);
 });

@@ -36,10 +36,26 @@ html, body {
     margin-bottom: 10px;
 }
 
+.refresh-rate input {
+    width: 100px;
+}
+
 .dark .refresh-rate {
     color: #ffffff;
 }
 
+.dark .refresh-rate input {
+    background-color: #404040;
+    border-color: #404040;
+    color: #ffffff;
+}
+
 .light .refresh-rate {
+    color: #000000;
+}
+
+.light .refresh-rate input {
+    background-color: #ffffff;
+    border-color: #ffffff;
     color: #000000;
 }
