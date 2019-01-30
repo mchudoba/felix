@@ -1,13 +1,16 @@
 function felix() {
     var target = document.getElementById('felix');
     var src = target.src;
-    var timeNumber = Date.now();
+
+    var time = new Date();
+    time.setSeconds(time.getSeconds() - 30);
+    time = time.getTime();
+
     var splitArray = src.split('&t=');
     if (splitArray.length === 1) {
-        src = src + '&t=' + timeNumber;
-    }
-    else {
-        src = splitArray[0] + '&t=' + timeNumber;
+        src = src + '&t=' + time;
+    } else {
+        src = splitArray[0] + '&t=' + time;
     }
 
     src += '&pwd=Armstrong';
@@ -15,5 +18,5 @@ function felix() {
 }
 
 $(function () {
-    setInterval(felix, 5000);
+    setInterval(felix, 500);
 });
