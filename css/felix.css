@@ -32,6 +32,10 @@ html, body {
     padding-top: 10px;
 }
 
+.option {
+    margin-bottom: 10px;
+}
+
 .dark .refresh-rate {
     color: #ffffff;
 }

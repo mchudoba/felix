@@ -1,4 +1,5 @@
 var DEFAULT_REFRESH_RATE_MILLIS = 500;
+var running = true;
 
 function felix() {
     var target = document.getElementById('felix');
@@ -17,6 +18,17 @@ function felix() {
 
     src += '&pwd=Armstrong';
     target.src = src;
+}
+
+function stream() {
+    if (!running) {
+        return;
+    }
+
+    felix();
+
+    var refreshRateMillis = getRefreshRateMillis();
+    setTimeout(stream, refreshRateMillis);
 }
 
 function getRefreshRateMillis() {
@@ -43,9 +55,17 @@ function toggleTheme() {
     }
 }
 
-$(function () {
-    var refreshRateMillis = getRefreshRateMillis();
-    setInterval(felix, refreshRateMillis);
+function playPause() {
+    if (this.value === 'play') {
+        running = true;
+        stream();
+    } else if (this.value === 'pause') {
+        running = false;
+    }
+}
 
+$(function () {
+    stream();
     $('input[name="theme"]').change(toggleTheme);
+    $('input[name="playback"]').change(playPause);
 });
