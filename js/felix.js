@@ -19,4 +19,12 @@ function felix() {
 
 $(function () {
     setInterval(felix, 500);
+
+    $('input[name="theme"]').change(function() {
+        if (this.value === 'dark') {
+            $('.wrapper').css('background-color', '#2b2b2b');
+        } else if (this.value === 'light') {
+            $('.wrapper').css('background-color', '#ffffff');
+        }
+    });
 });
