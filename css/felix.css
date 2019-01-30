@@ -4,8 +4,14 @@ html, body {
 }
 
 .wrapper {
-    background-color: #2b2b2b;
     min-height: 100%;
+}
+
+.dark.wrapper {
+    background-color: #2b2b2b;
+}
+.light.wrapper {
+    background-color: #ffffff;
 }
 
 #felix {
@@ -24,4 +30,12 @@ html, body {
 .options {
     padding-left: 10px;
     padding-top: 10px;
+}
+
+.dark .refresh-rate {
+    color: #ffffff;
+}
+
+.light .refresh-rate {
+    color: #000000;
 }

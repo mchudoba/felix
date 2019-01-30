@@ -1,3 +1,5 @@
+var DEFAULT_REFRESH_RATE_MILLIS = 500;
+
 function felix() {
     var target = document.getElementById('felix');
     var src = target.src;
@@ -17,14 +19,33 @@ function felix() {
     target.src = src;
 }
 
-$(function () {
-    setInterval(felix, 500);
+function getRefreshRateMillis() {
+    var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
 
-    $('input[name="theme"]').change(function() {
-        if (this.value === 'dark') {
-            $('.wrapper').css('background-color', '#2b2b2b');
-        } else if (this.value === 'light') {
-            $('.wrapper').css('background-color', '#ffffff');
-        }
-    });
+    var urlParams = new URLSearchParams(window.location.search);
+    var rateParam = urlParams.get('rate');
+    if (!!rateParam) {
+        refreshRateMillis = rateParam;
+    }
+
+    $('#refreshRate').text(refreshRateMillis);
+
+    return refreshRateMillis;
+}
+
+function toggleTheme() {
+    if (this.value === 'dark') {
+        $('.wrapper').addClass('dark');
+        $('.wrapper').removeClass('light');
+    } else if (this.value === 'light') {
+        $('.wrapper').addClass('light');
+        $('.wrapper').removeClass('dark');
+    }
+}
+
+$(function () {
+    var refreshRateMillis = getRefreshRateMillis();
+    setInterval(felix, refreshRateMillis);
+
+    $('input[name="theme"]').change(toggleTheme);
 });
