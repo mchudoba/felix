@@ -1,4 +1,4 @@
-var DEFAULT_REFRESH_RATE_MILLIS = 500;
+var DEFAULT_REFRESH_RATE_MILLIS = 1000;
 var running = true;
 var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
 
