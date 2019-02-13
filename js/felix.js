@@ -2,23 +2,27 @@ var DEFAULT_REFRESH_RATE_MILLIS = 1000;
 var running = true;
 var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
 
+var host = 'http://69.38.192.54:83';
+var path = '/cgi-bin/CGIProxy.fcgi';
+var cmdParam = '?cmd=snapPicture2';
+var userParam = '&usr=small';
+var passwordParam = '&pwd=Armstrong';
+
+function generateImageUrl(timeStamp) {
+    var url = host + path + cmdParam + userParam + passwordParam;
+    url += '&t=' + timeStamp;
+
+    return url;
+}
+
 function felix() {
     var target = document.getElementById('felix');
-    var src = target.src;
 
     var time = new Date();
     time.setSeconds(time.getSeconds() - 30);
     time = time.getTime();
 
-    var splitArray = src.split('&t=');
-    if (splitArray.length === 1) {
-        src = src + '&t=' + time;
-    } else {
-        src = splitArray[0] + '&t=' + time;
-    }
-
-    src += '&pwd=Armstrong';
-    target.src = src;
+    target.src = generateImageUrl(time);
 }
 
 function stream() {
