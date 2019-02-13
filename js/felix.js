@@ -2,11 +2,19 @@ var DEFAULT_REFRESH_RATE_MILLIS = 1000;
 var running = true;
 var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
 
-var host = 'http://69.38.192.54:83';
+// small room
+// var host = 'http://69.38.192.54:83';
+// var path = '/cgi-bin/CGIProxy.fcgi';
+// var cmdParam = '?cmd=snapPicture2';
+// var userParam = '&usr=small';
+// var passwordParam = '&pwd=Armstrong';
+
+// tiny room
+var host = 'http://69.38.192.54:99';
 var path = '/cgi-bin/CGIProxy.fcgi';
 var cmdParam = '?cmd=snapPicture2';
-var userParam = '&usr=small';
-var passwordParam = '&pwd=Armstrong';
+var userParam = '&usr=tiny';
+var passwordParam = '&pwd=Pippen';
 
 function generateImageUrl(timeStamp) {
     var url = host + path + cmdParam + userParam + passwordParam;
