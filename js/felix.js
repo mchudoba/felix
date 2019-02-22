@@ -1,7 +1,4 @@
 var DEFAULT_REFRESH_RATE_MILLIS = 1000;
-var running = true;
-var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
-
 var SMALL_ROOM = {
     host: 'http://69.38.192.54:83',
     path: '/cgi-bin/CGIProxy.fcgi',
@@ -9,7 +6,6 @@ var SMALL_ROOM = {
     userParam: '&usr=small',
     passwordParam: '&pwd=Armstrong'
 };
-
 var TINY_ROOM = {
     host: 'http://69.38.192.54:99',
     path: '/cgi-bin/CGIProxy.fcgi',
@@ -17,6 +13,10 @@ var TINY_ROOM = {
     userParam: '&usr=tiny',
     passwordParam: '&pwd=Pippen'
 };
+
+var running = true;
+var refreshRateMillis = DEFAULT_REFRESH_RATE_MILLIS;
+var currentCamera = SMALL_ROOM;
 
 function generateImageUrl(camera, timeStamp) {
     var url =
@@ -38,7 +38,7 @@ function felix() {
     time.setSeconds(time.getSeconds() - 30);
     time = time.getTime();
 
-    target.src = generateImageUrl(SMALL_ROOM, time);
+    target.src = generateImageUrl(currentCamera, time);
 }
 
 function stream() {
@@ -55,6 +55,14 @@ function updateRefreshRate() {
     if (Number.isInteger(newRate)) {
         console.log(newRate);
         refreshRateMillis = newRate;
+    }
+}
+
+function toggleCamera() {
+    if (this.value === 'small') {
+        currentCamera = SMALL_ROOM;
+    } else if (this.value === 'tiny') {
+        currentCamera = TINY_ROOM;
     }
 }
 
@@ -79,6 +87,7 @@ function playPause() {
 
 $(function () {
     stream();
+    $('input[name="camera"]').change(toggleCamera);
     $('input[name="theme"]').change(toggleTheme);
     $('input[name="playback"]').change(playPause);
 
