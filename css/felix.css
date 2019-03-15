@@ -4,17 +4,11 @@ html, body {
 }
 
 .wrapper {
+    background-color: #2b2b2b;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
-}
-
-.dark.wrapper {
-    background-color: #2b2b2b;
-}
-.light.wrapper {
-    background-color: #ffffff;
 }
 
 #felix {
@@ -41,26 +35,13 @@ html, body {
     margin-bottom: 10px;
 }
 
-.refresh-rate input {
-    width: 100px;
-}
-
-.dark .refresh-rate {
+.refresh-rate {
     color: #ffffff;
 }
 
-.dark .refresh-rate input {
+.refresh-rate input {
+    width: 100px;
     background-color: #404040;
     border-color: #404040;
     color: #ffffff;
-}
-
-.light .refresh-rate {
-    color: #000000;
-}
-
-.light .refresh-rate input {
-    background-color: #ffffff;
-    border-color: #ffffff;
-    color: #000000;
 }

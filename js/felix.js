@@ -66,16 +66,6 @@ function toggleCamera() {
     }
 }
 
-function toggleTheme() {
-    if (this.value === 'dark') {
-        $('.wrapper').addClass('dark');
-        $('.wrapper').removeClass('light');
-    } else if (this.value === 'light') {
-        $('.wrapper').addClass('light');
-        $('.wrapper').removeClass('dark');
-    }
-}
-
 function playPause() {
     if (this.value === 'play') {
         running = true;
@@ -88,7 +78,6 @@ function playPause() {
 $(function () {
     stream();
     $('input[name="camera"]').change(toggleCamera);
-    $('input[name="theme"]').change(toggleTheme);
     $('input[name="playback"]').change(playPause);
 
     $('#refreshRate').val(refreshRateMillis);
