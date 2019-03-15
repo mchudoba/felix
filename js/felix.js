@@ -64,6 +64,8 @@ function toggleCamera() {
     } else if (this.value === 'tiny') {
         currentCamera = TINY_ROOM;
     }
+
+    felix();
 }
 
 function playPause() {
